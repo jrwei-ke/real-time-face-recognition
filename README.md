@@ -22,7 +22,7 @@ conda activate env_name
 ### Install paddlepaddle lib:
 
 ```linux
-pip install paddlepaddle==2.4.2 -i https://pypi.tuna.tsinghua.edu.cn/simple \\CPU version
+pip install paddlepaddle==2.4.2 -i https://pypi.tuna.tsinghua.edu.cn/simple //CPU version
 ```
 ```linux
 pip install paddlepaddle==2.4.2-gpu \\GPU version
