@@ -28,11 +28,11 @@ pip install paddlepaddle==2.4.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
 ### Install [Insight_Face_Paddle](https://github.com/littletomatodonkey/insight-face-paddle) through wheel:
 
 ```linux
-pip install wheel
-git clone https://github.com/littletomatodonkey/insight-face-paddle.git
-cd insight-face-paddle
-Python setup.py bdist_wheel
-pip install dist/* 
+pip install wheel  
+git clone https://github.com/littletomatodonkey/insight-face-paddle.git  
+cd insight-face-paddle  
+Python setup.py bdist_wheel  
+pip install dist/*  
 ```
 
 This repo has another way to install by pip. I tried and found lots of incompatible issues for the reason that lots of libs auto installed by pip are getting higher version.  
