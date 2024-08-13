@@ -22,7 +22,10 @@ conda activate env_name
 ### Install paddlepaddle lib:
 
 ```linux
-pip install paddlepaddle==2.4.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install paddlepaddle==2.4.2 -i https://pypi.tuna.tsinghua.edu.cn/simple \\CPU version
+```
+```linux
+pip install paddlepaddle==2.4.2-gpu \\GPU version
 ```
 
 ### Install [Insight_Face_Paddle](https://github.com/littletomatodonkey/insight-face-paddle) through wheel:
