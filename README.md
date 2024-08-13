@@ -11,3 +11,26 @@ Using conda to build virtual environment:
 ```linux
 conda create --name env_name python==3.8
 ```
+[Insight_Face_Paddle](https://github.com/littletomatodonkey/insight-face-paddle) list a range of compatible version of python, however, version 3.8 is strongly suggested.  
+
+Activate virtual environment:
+
+```linux
+conda activate env_name
+```
+
+Install paddlepaddle lib:
+
+```python
+pip install paddlepaddle==2.4.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+Install [Insight_Face_Paddle](https://github.com/littletomatodonkey/insight-face-paddle) through wheel:
+
+```
+pip install wheel
+git clone https://github.com/littletomatodonkey/insight-face-paddle.git
+cd insight-face-paddle
+Python setup.py bdist_wheel
+```
+
