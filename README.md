@@ -49,7 +49,7 @@ This hub is for accessing to pre-trained facial-detection model.
 
 ```python
 pip install protobuf==3.20 
-Pip install paddlenlp==2.5.2
+pip install paddlenlp==2.5.2
 ```
 
 Incompatible result from the auto updating of pip, downgrade version to avoid this problem.
