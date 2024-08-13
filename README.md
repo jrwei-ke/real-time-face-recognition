@@ -35,6 +35,29 @@ Python setup.py bdist_wheel
 pip install dist/* 
 ```
 
-This repo has another way to install by pip. I tried and found lots of incompatible issues for the reason that lots of lib auto installed by pip is getting higher version.  
+This repo has another way to install by pip. I tried and found lots of incompatible issues for the reason that lots of libs auto installed by pip are getting higher version.  
+
+### Install paddlehub:
+
+```python
+pip install paddlehub==2.1.0
+```
+
+This hub is for accessing to pre-trained facial-detection model.
+
+### Version modification for libs:
+
+```python
+pip install protobuf==3.20 
+Pip install paddlenlp==2.5.2
+```
+
+Incompatible result from the auto updating of pip, downgrade version to avoid this problem.
+
+### Install pre-trained facial-detection model
+
+```python
+hub install pyramidbox_lite_mobile
+```
 
 
