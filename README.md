@@ -6,31 +6,35 @@ This repo refers to [Insight_Face_Paddle](https://github.com/littletomatodonkey/
 
 It is not recommended to use M-series processor for MacOS as base enviroment for the reason that it may report lots of incompatible problems in spite of the compatible announcement from officail website. Win10 and Ubuntu 22.04 are recommended and this repo is operated on ubuntu 22.04 desktop system. 
 
-Using conda to build virtual environment:
+### Using conda to build virtual environment:
 
 ```linux
 conda create --name env_name python==3.8
 ```
 [Insight_Face_Paddle](https://github.com/littletomatodonkey/insight-face-paddle) list a range of compatible version of python, however, version 3.8 is strongly suggested.  
 
-Activate virtual environment:
+### Activate virtual environment:
 
 ```linux
 conda activate env_name
 ```
 
-Install paddlepaddle lib:
+### Install paddlepaddle lib:
 
 ```python
 pip install paddlepaddle==2.4.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
-Install [Insight_Face_Paddle](https://github.com/littletomatodonkey/insight-face-paddle) through wheel:
+### Install [Insight_Face_Paddle](https://github.com/littletomatodonkey/insight-face-paddle) through wheel:
 
 ```
 pip install wheel
 git clone https://github.com/littletomatodonkey/insight-face-paddle.git
 cd insight-face-paddle
 Python setup.py bdist_wheel
+pip install dist/* 
 ```
+
+This repo has another way to install by pip. I tried and found lots of incompatible issues for the reason that lots of lib auto installed by pip is getting higher version.  
+
 
