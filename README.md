@@ -21,13 +21,13 @@ conda activate env_name
 
 ### Install paddlepaddle lib:
 
-```python
+```linux
 pip install paddlepaddle==2.4.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 ### Install [Insight_Face_Paddle](https://github.com/littletomatodonkey/insight-face-paddle) through wheel:
 
-```
+```linux
 pip install wheel
 git clone https://github.com/littletomatodonkey/insight-face-paddle.git
 cd insight-face-paddle
@@ -39,7 +39,7 @@ This repo has another way to install by pip. I tried and found lots of incompati
 
 ### Install paddlehub:
 
-```python
+```linux
 pip install paddlehub==2.1.0
 ```
 
@@ -47,7 +47,7 @@ This hub is for accessing to pre-trained facial-detection model.
 
 ### Version modification for libs:
 
-```python
+```linux
 pip install protobuf==3.20 
 pip install paddlenlp==2.5.2
 ```
@@ -56,7 +56,7 @@ Incompatible result from the auto updating of pip, downgrade version to avoid th
 
 ### Install pre-trained facial-detection model
 
-```python
+```linux
 hub install pyramidbox_lite_mobile
 ```
 
