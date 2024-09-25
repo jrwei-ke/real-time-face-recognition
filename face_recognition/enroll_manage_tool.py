@@ -119,9 +119,10 @@ def video_show():
 if __name__ == '__main__':
     with open('enroll_condition.json', 'r') as f:
         config = json.load(f)
-
-    camera_url1 = config['camera_url1']
-    camera_url2 = config['camera_url2']
+    with open('camera_urls.json', 'r') as f:
+        camera_urls = json.load(f)
+    camera_url1 = camera_urls[0]
+    camera_url2 = camera_urls[1]
     
     
     args.use_gpu=config['use_gpu']
