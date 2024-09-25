@@ -4,10 +4,19 @@ import cv2
 import os
 import time
 import json
+import sqlite3
+
+# camera_url = "rtsp://admin:unitedvigi@10.10.2.5/stream2"
+
+# parser = face.parser()
+# args = parser.parse_args()
+# args.use_gpu=True
+# args.build_index = "./Dataset/index.bin"
+# args.img_dir = "./Dataset/gallery"
+# args.label = "./Dataset/gallery/labels.txt"
+# det_threshold = 0.9
 
 face_detector = hub.Module(name="pyramidbox_lite_mobile")
-parser = face.parser()
-args = parser.parse_args()
 predictor = []
 
 
@@ -37,28 +46,28 @@ def crop_and_save_face(img, filepath, box_list):
     face_img = img[ymin:ymax, xmin:xmax, :]
     cv2.imwrite(filepath, face_img)
     
-def write_to_file(filepath, person_name, filename=args.label):
-
+def write_to_file(filepath, person_name, filename="./app/static/images/labels.txt"):
     modified_filepath = "./" + os.path.join(person_name, os.path.basename(filepath))
     with open(filename, 'a') as f:
         f.write("{}\t{}\n".format(modified_filepath, person_name))
         
 def enter_person_name():
-    person_name = input("Please create the person's ID:")
-    print(f'Person ID:{person_name}')
-    output_dir = os.path.join(args.img_dir, person_name)
+    # Create a directory for the person's name
+    conn = sqlite3.connect('./instance/site.db')
+
+    # 建立游標
+    cursor = conn.cursor()
+
+    # 執行 SQL 查詢
+    cursor.execute("SELECT * FROM enrollment ORDER BY id DESC LIMIT 1")
+
+    # 獲取所有結果
+    row = cursor.fetchone()
+    person_name = row[1]
+    print(person_name)
+    output_dir = os.path.join("./app/static/images", person_name)
     os.makedirs(output_dir, exist_ok=True)
     return person_name, output_dir
-
-def square_crop(img):
-    h,w,c = img.shape
-    if(h>w):
-        margin = int((h-w)/2)
-        result = img[margin:h-margin,:]
-    else:
-        margin = int((w-h)/2)
-        result = img[:,margin:w-margin]
-    return result
 
 def capture_face_images(camera_url, person_name, output_dir):
     # Initialize the count
@@ -74,13 +83,10 @@ def capture_face_images(camera_url, person_name, output_dir):
         
         # Capture frame-by-frame from the webcam
         ret, frame = cap.read()
-        if not ret:
-            print('Camera disconnected!')
-            return
         frame_count += 1
 
-        # Perform face detection on the frame
-        crop_frame = square_crop(frame)
+        # Perform face detection on the frameß
+        crop_frame = frame[:,100:580]
         resized_frame = cv2.resize(crop_frame, (640,480), interpolation= cv2.INTER_LINEAR)
         result = face_detector.face_detection([resized_frame],
                    use_gpu=args.use_gpu,
@@ -94,7 +100,6 @@ def capture_face_images(camera_url, person_name, output_dir):
             filename = '{}_{}.jpeg'.format(person_name, cnt)
             filepath = os.path.join(output_dir, filename)
             crop_and_save_face(resized_frame, filepath, box_list)
-            print(f'image{cnt} stored.')
             write_to_file(filepath, person_name)
             cnt += 1
             
@@ -109,7 +114,7 @@ def video_show():
 
     while time.time() < end_time:
         ret, frame = cap.read()
-        crop_frame = square_crop(frame)
+        crop_frame = frame[:,100:580]
         resized_frame = cv2.resize(crop_frame, (640,480), interpolation= cv2.INTER_LINEAR)
         #cv2.imshow(f"Camera", frame)
         #cv2.imshow(f"Crop",resized_frame)
@@ -119,12 +124,11 @@ def video_show():
 if __name__ == '__main__':
     with open('enroll_condition.json', 'r') as f:
         config = json.load(f)
-    with open('camera_urls.json', 'r') as f:
-        camera_urls = json.load(f)
-    camera_url1 = camera_urls[0]
-    camera_url2 = camera_urls[1]
-    
-    
+
+    camera_url1 = config['camera_url1']
+    camera_url2 = config['camera_url2']
+    parser = face.parser()
+    args = parser.parse_args()
     args.use_gpu=config['use_gpu']
     args.build_index = config['build_index']
     args.img_dir = config['img_dir']
@@ -135,10 +139,6 @@ if __name__ == '__main__':
 
     person_name, output_dir = enter_person_name()
     capture_face_images(camera_url1, person_name, output_dir)
-    print('First camera end!')
-    for i in range(5):
-        print(5-i)
-        time.sleep(1)
-    print('Second camera start!!')
+    time.sleep(5)
     capture_face_images(camera_url2, person_name, output_dir)
     predictor.build_index()
