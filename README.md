@@ -67,7 +67,11 @@ hub install pyramidbox_lite_mobile
 
 ### Enroll Face Data
 
-One should build an index for face matching. Before executing, setting the urls for camera. Check "camera_urls.json" and "enroll_condition.json". The detail of other parameters are described in insightface-paddle.
+One should build an index for face matching. Before executing, setting the urls for camera. 
+
+Check "camera_urls.json" and "enroll_condition.json". 
+
+The detail of other parameters are described in insightface-paddle.
 
 Excecute the program:
 
@@ -75,7 +79,11 @@ Excecute the program:
 python enroll_manage_tool.py
 ```
 
-First, enter the ID of a new person and then the new person who wants to be enrolled should be in front of the camera and rotate his/her face in different angle for about five second and take a moment for another five second and move to the other camera untill all the camera enrollment complete.
+First, enter the ID of a new person and then the new person who wants to be enrolled should be in front of the camera, 
+
+and rotate his/her face in different angle for about five second and take a moment for another five second,
+
+and move to the other camera untill all the camera enrollment complete.
 
 ### Face Recognition
 
@@ -84,6 +92,8 @@ python face_rec.py
 ```
 
 A video shows the frame from the camera. If face is detected, a bounding box is drawed and a cofidence score is shown.
+
 If a detected person is in the data pool, the label attached to the bounding box will be the ID which is setting during enrollment.
+
 If not, the label will be "unknown".
 
