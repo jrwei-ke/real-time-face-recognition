@@ -1,0 +1,9 @@
+{
+    "det_threshold" : 0.8,
+    "use_gpu": false,
+    "rec_thresh": 0.7,
+    "cdd_num": 5,
+    "index": "./enroll_data/index.bin",
+    "bbox_threshold": 0.95,
+    "shrink_face_det": 0.4
+}

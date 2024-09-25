@@ -1,0 +1,9 @@
+{
+    "camera_url1": "rtsp://admin:unitedvigi@10.10.10.197/stream2",
+    "camera_url2": "rtsp://admin:unitedvigi@10.10.10.198/stream2",
+    "build_index": "./enroll_data/index.bin",
+    "img_dir": "./enroll_data/images",
+    "label" : "./enroll_data/labels.txt",
+    "det_threshold" : 0.95,
+    "use_gpu": false
+}
